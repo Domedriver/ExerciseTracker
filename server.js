@@ -143,7 +143,7 @@ app.post('/api/exercise/add', function(req, res) {
       res.type('text').send('Incorrect userId')
     } else {
       addExerciseToDb(req.body, function(result) {        
-        var newWorkout = result.workouts.slice(-1)[0];        
+        var newWorkout = result.workouts.slice(0)[0];        
         newWorkout = {description: newWorkout.description, duration:newWorkout.duration, date:newWorkout.date.toLocaleDateString("en-US", dateOptions)}        
         var profile = {[result.username]: result.userId, new_workout: newWorkout}
         res.json(profile)
